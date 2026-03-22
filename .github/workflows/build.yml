@@ -17,17 +17,14 @@ jobs:
         with:
           node-version: '20'
       
-      - name: Clean npm cache
-        run: npm cache clean --force
-      
       - name: Install dependencies
-        run: npm install
-      
-      - name: Install electron-builder globally
-        run: npm install -g electron-builder
+        run: |
+          npm install
+          npm install electron@28.0.0 --save-dev
+          npm install electron-builder --save-dev
       
       - name: Build Windows
-        run: electron-builder --win --publish=never
+        run: npx electron-builder --win --publish=never
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
@@ -47,17 +44,14 @@ jobs:
         with:
           node-version: '20'
       
-      - name: Clean npm cache
-        run: npm cache clean --force
-      
       - name: Install dependencies
-        run: npm install
-      
-      - name: Install electron-builder globally
-        run: npm install -g electron-builder
+        run: |
+          npm install
+          npm install electron@28.0.0 --save-dev
+          npm install electron-builder --save-dev
       
       - name: Build Mac
-        run: electron-builder --mac --publish=never
+        run: npx electron-builder --mac --publish=never
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
