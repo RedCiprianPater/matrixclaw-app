@@ -16,15 +16,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'npm'
       
       - name: Install dependencies
-        run: |
-          npm install
-          npm install electron@28.0.0 --save-dev
-          npm install electron-builder --save-dev
+        run: npm ci
       
       - name: Build Windows
-        run: npx electron-builder --win --publish=never
+        run: npm run build:win
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
@@ -43,15 +41,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'npm'
       
       - name: Install dependencies
-        run: |
-          npm install
-          npm install electron@28.0.0 --save-dev
-          npm install electron-builder --save-dev
+        run: npm ci
       
       - name: Build Mac
-        run: npx electron-builder --mac --publish=never
+        run: npm run build:mac
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
