@@ -23,11 +23,11 @@ jobs:
       - name: Install dependencies
         run: npm install
       
-      - name: Install electron-builder
-        run: npm install electron-builder --save-dev
+      - name: Install electron-builder globally
+        run: npm install -g electron-builder
       
       - name: Build Windows
-        run: ./node_modules/.bin/electron-builder --win --publish=never
+        run: electron-builder --win --publish=never
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
@@ -53,11 +53,11 @@ jobs:
       - name: Install dependencies
         run: npm install
       
-      - name: Install electron-builder
-        run: npm install electron-builder --save-dev
+      - name: Install electron-builder globally
+        run: npm install -g electron-builder
       
       - name: Build Mac
-        run: ./node_modules/.bin/electron-builder --mac --publish=never
+        run: electron-builder --mac --publish=never
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
