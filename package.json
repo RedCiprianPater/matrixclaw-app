@@ -26,15 +26,15 @@
     ],
     "win": {
       "target": "nsis",
-      "icon": "assets/icon.svg"
+      "icon": "assets/icon.png"
     },
     "mac": {
       "target": "dmg",
-      "icon": "assets/icon.svg"
+      "icon": "assets/icon.png"
     },
     "linux": {
       "target": ["AppImage", "snap"],
-      "icon": "assets/icon.svg",
+      "icon": "assets/icon.png",
       "category": "Utility"
     },
     "nsis": {
