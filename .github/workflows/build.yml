@@ -17,14 +17,16 @@ jobs:
         with:
           node-version: '20'
       
-      - name: Clean and install
-        run: |
-          rm -rf node_modules package-lock.json
-          npm cache clean --force
-          npm install
+      - name: Delete package-lock
+        run: Remove-Item -Recurse -Force node_modules,package-lock.json -ErrorAction SilentlyContinue
+      
+      - name: Install dependencies
+        run: npm install
       
       - name: Build Windows
-        run: ./node_modules/.bin/electron-builder.cmd --win --publish=never
+        run: |
+          $env:PATH += ";$PWD\node_modules\.bin"
+          electron-builder --win --publish=never
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
@@ -44,14 +46,16 @@ jobs:
         with:
           node-version: '20'
       
-      - name: Clean and install
-        run: |
-          rm -rf node_modules package-lock.json
-          npm cache clean --force
-          npm install
+      - name: Delete package-lock
+        run: rm -rf node_modules package-lock.json
+      
+      - name: Install dependencies
+        run: npm install
       
       - name: Build Mac
-        run: ./node_modules/.bin/electron-builder --mac --publish=never
+        run: |
+          export PATH="$PWD/node_modules/.bin:$PATH"
+          electron-builder --mac --publish=never
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
